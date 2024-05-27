@@ -54,7 +54,7 @@ export default function Search() {
       setLoading(true);
       setShowMore(false);
       const searchQuery = urlParams.toString();
-      const res = await fetch(`/api/listing/get?${searchQuery}`);
+      const res = await fetch(`https://rentify-y4sv.onrender.com/api/listing/get?${searchQuery}`);
       const data = await res.json();
       console.log("Fetched data:", data);
       

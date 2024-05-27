@@ -1,5 +1,10 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
+import { getAuth } from "firebase/auth";
+import { getFirestore } from "firebase/firestore";
+// for image:
+import { getStorage} from "firebase/storage"; 
 // import { getAnalytics } from "firebase/analytics";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -16,6 +21,12 @@ const firebaseConfig = {
   measurementId: "G-GQ9VX4NDSG"
 };
 
+
+const app = initializeApp(firebaseConfig);
 // Initialize Firebase
-export const app = initializeApp(firebaseConfig);
-// const analytics = getAnalytics(app);
+const auth = getAuth(app);
+// export const db = getFirestore(app);
+const db = getFirestore(app); // firebase.firestore(); if do the other way
+const storage = getStorage(app);// firebase.storage();
+
+export { auth, db, storage };

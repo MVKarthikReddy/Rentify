@@ -8,7 +8,7 @@ import {
   ref,
   uploadBytesResumable,
 } from "firebase/storage";
-import { app } from "../firebase";
+import { storage } from "../firebase";
 import "react-circular-progressbar/dist/styles.css";
 import { HiOutlineExclamationCircle } from "react-icons/hi";
 import { CircularProgressbar } from "react-circular-progressbar";
@@ -55,7 +55,7 @@ export default function Profile() {
   const uploadImage = async () => {
     setImageFileUploading(true); // set that we are currently uploading an image
     setImageFileUploadError(null); // resetting error message when a new image is uploaded
-    const storage = getStorage(app);
+    // const storage = getStorage(app);
     const fileName = new Date().getTime() + imageFile.name;
     const storageref = ref(storage, fileName); //creating a reference in firebase to store our images
     const uploadTask = uploadBytesResumable(storageref, imageFile); //uploading the file using the method provided by Firebase
@@ -166,7 +166,7 @@ export default function Profile() {
   const handleShowListings = async () => {
     try {
       setShowListingsError(false);
-      const res = await fetch(`http://localhost:5000/api/user/listings/${currentUser._id}`);
+      const res = await fetch(`https://rentify-y4sv.onrender.com/api/user/listings/${currentUser._id}`);
       const data = await res.json();
       if (data.success === false) {
         setShowListingsError(true);

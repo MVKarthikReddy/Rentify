@@ -1,11 +1,10 @@
 import { useState } from 'react';
 import {
   getDownloadURL,
-  getStorage,
   ref,
   uploadBytesResumable,
 } from 'firebase/storage';
-import { app } from '../firebase';
+import { storage } from '../firebase';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { Button, TextInput, Textarea } from "flowbite-react";
@@ -35,7 +34,10 @@ export default function CreateListing() {
   });
   const navigate = useNavigate();
 /* -------------handleImageSubmit------------------ */
+
   const handleImageSubmit = (e) => {
+
+    console.log('uploading image')
     if (files.length > 0 && files.length + formData.imageUrls.length < 7){
       setUploading(true);
       setImageUploadError(false);
@@ -66,8 +68,9 @@ export default function CreateListing() {
   };
 
   const storeImage = async (file) => {
+      console.log('uploading image')
     return new Promise((resolve, reject) => {
-      const storage = getStorage(app);
+      // const storage = getStorage(app);
       const fileName = new Date().getTime() + file.name;
       const storageref = ref(storage, fileName);
       const uploadTask = uploadBytesResumable(storageref, file);
@@ -143,7 +146,7 @@ const handleSubmit = async (e) => {
       return setError('Discount price must be lower than regular price');
     setLoading(true);
     setError(false);
-    const res = await fetch('/api/listing/create', {
+    const res = await fetch('https://rentify-y4sv.onrender.com/api/listing/create/', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

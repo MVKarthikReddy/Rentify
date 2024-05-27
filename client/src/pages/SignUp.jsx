@@ -41,7 +41,7 @@ export default function SignUp() {
           //here have some problem front end run in localhost 5173
           //and back end run in localhost 3000 
           //so add proxy in vite config 
-          const res =await fetch(' http://localhost:5000/api/auth/signup',{
+          const res =await fetch('https://rentify-y4sv.onrender.com/api/auth/signup',{
             method: 'POST',
             headers : {
               'Content-Type': 'application/json',

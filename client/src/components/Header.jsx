@@ -34,7 +34,7 @@ export default function Header() {
   /* Sign out function */
   const handleSignout = async () => {
     try {
-      const res = await fetch("/api/user/signout", {
+      const res = await fetch("https://rentify-y4sv.onrender.com/api/user/signout", {
         method: "POST",
       });
       const data = await res.json();
