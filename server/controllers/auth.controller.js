@@ -45,7 +45,7 @@ const signup = async (req, res, next) => {
     if(!validPassword){
       return next(errorHandler(400,'Invalid password'));
     }
-
+    console.log(process.env.JWT_SECRET)
     const token = jwt.sign({ id: validUser._id }, process.env.JWT_SECRET);
     //we dont want to see hash password also in database for that
     const {password:pass, ...rest} =validUser._doc;

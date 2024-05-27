@@ -5,11 +5,13 @@ const authRouter = require('./routes/auth.route.js');
 const listingRouter = require('./routes/listing.route.js');
 const cookieParser =  require('cookie-parser');
 const path = require('path');
+const cors = require('cors')
 
 require('dotenv').config();
 
 const app = express();
 
+app.use(cors())
 app.use(express.json()); //it  allows to parse JSON objects in the request body
 app.use(cookieParser());
 

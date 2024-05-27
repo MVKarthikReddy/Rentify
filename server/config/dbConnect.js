@@ -18,7 +18,6 @@ const options = {
 //  Connect to the database
 const connectMongoDB = async () => {
   try {
-    console.log(process.env.MONGO_URI)
     const connect = await mongoose.connect(process.env.MONGO_URI, options);
     console.log(`MongoDB Connected: ${connect.connection.host}`);
   } catch (error) {
