@@ -33,6 +33,8 @@ export default function Header() {
 
   /* Sign out function */
   const handleSignout = async () => {
+    console.log(import.meta.env.VITE_BACKEND_API_URL)
+    console.log('I am Done!')
     try {
       const res = await fetch(`${import.meta.env.VITE_BACKEND_API_URL}/api/user/signout`, {
         method: "POST",
@@ -49,9 +51,6 @@ export default function Header() {
   };
 
   return (
-
-    
-
     
     <header   className="sticky top-0 z-30  bg-slate-200 shadow-lg w-full bg-opacity-80  backdrop-blur-sm">
       <div className="relative  flex justify-between items-center max-w-7xl mx-auto p-3 ">
