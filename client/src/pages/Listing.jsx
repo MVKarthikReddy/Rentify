@@ -30,7 +30,9 @@ export default function Listing() {
       try {
         setLoading(true);
         console.log(params.listingId)
-        const res = await fetch(`${import.meta.env.VITE_BACKEND_API_URL}/api/listing/get/${params.listingId}`);
+        const res = await fetch(`${import.meta.env.VITE_BACKEND_API_URL}/api/listing/get/${params.listingId}`,{
+          mode: 'no-cors'
+        });
         const data = await res.json();
         if (data.success === false) {
           setError(true);
