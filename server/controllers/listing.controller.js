@@ -8,7 +8,7 @@ const createListing = async (req, res, next) => {
             userRef: req.user.id,
             ...req.body
           }  
-        console.log(newBody)
+        //console.log(newBody)
         const listing = await Listing.create(newBody);
         return res.status(201).json(listing);
 
