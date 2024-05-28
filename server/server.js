@@ -39,8 +39,10 @@ app.listen(5000,() => {
   // Serve static files if we are in production
   app.use(express.static(path.join(__dirname,'/client/dist')));
   // Handling any routes that don't match the ones above (Should be at the end)
-  app.get('*', (req, res) =>{
-    res.sendFile(path.join(__dirname,'client', 'dist','index.html'));//__dirname + '/views/index.html
+  app.get('/', (req, res) =>{
+    res.json({
+      message : "Backend is working fine"
+    })
   })
       
   //we create a middleware to handles error  if they are not caught by other middlewares or handlers
