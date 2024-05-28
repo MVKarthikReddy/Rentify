@@ -18,8 +18,8 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use(cookieParser());
-app.use(cors());
+// app.use(cookieParser());
+// app.use(cors());
         
 // app.use(cors())
 app.use(express.json()); //it  allows to parse JSON objects in the request body
