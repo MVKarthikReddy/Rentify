@@ -12,7 +12,7 @@ require('dotenv').config();
 const app = express();
 
 const corsOptions = {
-  origin: 'http://localhost:5173',
+  origin: 'https://rentify-gules.vercel.app/',
   credentials: true, // Enable credentials (cookies)
 };
 
@@ -30,7 +30,11 @@ app.listen(5000,() => {
     console.log(`server is running on ${5000}`)
 })
 
-app.use('/api/user', userRouter);
+app.use('/', () => {
+  
+});
+
+  app.use('/api/user', userRouter);
   app.use('/api/auth', authRouter);
   app.use('/api/listing', listingRouter);
 
