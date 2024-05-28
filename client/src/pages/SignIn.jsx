@@ -31,8 +31,9 @@ export default function SignIn() {
       //here have some problem front end run in localhost 5173
       //and back end run in localhost 3000 
       //so add proxy in vite config 
-      const res = await fetch('https://rentify-y4sv.onrender.com/api/auth/signin/',{
+      const res = await fetch(`${import.meta.env.VITE_BACKEND_API_URL}/api/auth/signin/`,{
         method:'POST',  
+        credentials: "include",
         headers:{
           "Content-Type":"application/json"
         },
@@ -48,6 +49,9 @@ export default function SignIn() {
       //once all done successfully then navigate in sign-in page
       if(res.ok){
         dispatch(signInSuccess(data));
+        console.log(data)
+        const token = data.token
+        localStorage.setItem('jwt_token',token)
         navigate('/');
       }
 

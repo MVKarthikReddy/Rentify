@@ -11,9 +11,16 @@ require('dotenv').config();
 
 const app = express();
 
-app.use(cors())
-app.use(express.json()); //it  allows to parse JSON objects in the request body
+const corsOptions = {
+  origin: 'http://localhost:5173',
+  credentials: true, // Enable credentials (cookies)
+};
+
 app.use(cookieParser());
+app.use(cors(corsOptions));
+        
+// app.use(cors())
+app.use(express.json()); //it  allows to parse JSON objects in the request body
 
 // const __dirname =path.resolve();
 

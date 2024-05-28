@@ -146,10 +146,13 @@ const handleSubmit = async (e) => {
       return setError('Discount price must be lower than regular price');
     setLoading(true);
     setError(false);
-    const res = await fetch('https://rentify-y4sv.onrender.com/api/listing/create/', {
+    // console.log(localStorage.getItem("jwt_token"))
+    const res = await fetch(`${import.meta.env.VITE_BACKEND_API_URL}/api/listing/create/`, {
       method: 'POST',
+      // credentials: 'include',
       headers: {
         'Content-Type': 'application/json',
+        Authorization : "Bearer"+" "+ localStorage.getItem("jwt_token")
       },
       body: JSON.stringify({
         ...formData,

@@ -48,6 +48,7 @@ export default function Profile() {
   };
   useEffect(() => {
     if (imageFile) {
+      console.log(currentUser)
       uploadImage();
     }
   }, [imageFile]);
@@ -108,10 +109,11 @@ export default function Profile() {
     }
     try {
       dispatch(updateStart());
-      const res = await fetch(`/api/user/update/${currentUser._id}`, {
+      const res = await fetch(`${import.meta.env.VITE_BACKEND_API_URL}/api/user/update/${currentUser._id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
+          Authorization : "Bearer"+" "+ localStorage.getItem("jwt_token")
         },
         body: JSON.stringify(formData),
       });
@@ -132,7 +134,7 @@ export default function Profile() {
     setShowModal(false);
     try {
       dispatch(deleteUserStart());
-      const res = await fetch(`/api/user/delete/${currentUser._id}`, {
+      const res = await fetch(`${import.meta.env.VITE_BACKEND_API_URL}/api/user/delete/${currentUser._id}`, {
         method: "DELETE",
       });
       const data = await res.json();
@@ -149,7 +151,7 @@ export default function Profile() {
   /* Sign out function */
   const handleSignout = async () => {
     try {
-      const res = await fetch("/api/user/signout", {
+      const res = await fetch(`${import.meta.env.VITE_BACKEND_API_URL}/api/user/signout`, {
         method: "POST",
       });
       const data = await res.json();
@@ -166,7 +168,7 @@ export default function Profile() {
   const handleShowListings = async () => {
     try {
       setShowListingsError(false);
-      const res = await fetch(`https://rentify-y4sv.onrender.com/api/user/listings/${currentUser._id}`);
+      const res = await fetch(`${import.meta.env.VITE_BACKEND_API_URL}/api/user/listings/${currentUser._id}`);
       const data = await res.json();
       if (data.success === false) {
         setShowListingsError(true);
@@ -181,7 +183,7 @@ export default function Profile() {
 
   const handleListingDelete = async (listingId) => {
     try {
-      const res = await fetch(`/api/listing/delete/${listingId}`, {
+      const res = await fetch(`${import.meta.env.VITE_BACKEND_API_URL}/api/listing/delete/${listingId}`, {
         method: 'DELETE',
       });
       const data = await res.json();

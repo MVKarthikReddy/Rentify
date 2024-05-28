@@ -28,6 +28,7 @@ const signup = async (req, res, next) => {
 
   const signin =async (req,res,next) => {
     const { email, password } =req.body;
+    // console.log(req.body)
     if(!email || !password || email ==='' || password===''){
       next(errorHandler(400,'All fields are required'));
    }
@@ -49,8 +50,9 @@ const signup = async (req, res, next) => {
     const token = jwt.sign({ id: validUser._id }, process.env.JWT_SECRET);
     //we dont want to see hash password also in database for that
     const {password:pass, ...rest} =validUser._doc;
-    res.status(200).cookie('access_token',token,{
-      httpOnly :true}).json(rest);
+    // console.log(token)
+    rest['token'] = token
+    res.status(200).json(rest);
 
     
    } catch (error) {

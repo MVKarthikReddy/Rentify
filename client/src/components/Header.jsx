@@ -34,7 +34,7 @@ export default function Header() {
   /* Sign out function */
   const handleSignout = async () => {
     try {
-      const res = await fetch("https://rentify-y4sv.onrender.com/api/user/signout", {
+      const res = await fetch(`${import.meta.env.VITE_BACKEND_API_URL}/api/user/signout`, {
         method: "POST",
       });
       const data = await res.json();
@@ -62,7 +62,7 @@ export default function Header() {
             <span className="text-slate-600">ify</span>
           </h1>
         </Link>
-        <form onSubmit={handleSubmit} className="flex items-center">
+        {/* <form onSubmit={handleSubmit} className="flex items-center">
           <TextInput
             type="text"
             placeholder="Search..."
@@ -73,8 +73,8 @@ export default function Header() {
             }}
             className="hidden lg:inline   cursor-pointer"
           />
-        </form>
-        <Link to="/search">
+        </form> */}
+        {/* <Link to="/search">
           <Button
             type="button"
             className=" w-10 h-10 lg:hidden flex items-center justify-center mx-auto"
@@ -83,7 +83,7 @@ export default function Header() {
           >
             <AiOutlineSearch className="cursor-pointer " />
           </Button>
-        </Link>
+        </Link> */}
 
         <ul className="flex gap-4 items-center">
           <Link to="/">

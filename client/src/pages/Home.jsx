@@ -9,6 +9,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css/bundle";
 import { Link } from "react-router-dom";
 import ListingItem from "../components/ListingItem";
+import { Button, Modal } from "flowbite-react";
 export default function Home() {
   const [offerListings, setOfferListings] = useState([]);
   const [saleListings, setSaleListings] = useState([]);
@@ -17,7 +18,7 @@ export default function Home() {
   useEffect(() => {
     const fetchOfferListings = async () => {
       try {
-        const res = await fetch("https://rentify-y4sv.onrender.com/api/listing/get?offer=true&limit=4");
+        const res = await fetch(`${import.meta.env.VITE_BACKEND_API_URL}/api/listing/get?offer=true&limit=4`);
         const data = await res.json();
         setOfferListings(data);
         fetchRentListings();
@@ -27,7 +28,7 @@ export default function Home() {
     };
     const fetchRentListings = async () => {
       try {
-        const res = await fetch("https://rentify-y4sv.onrender.com/api/listing/get?type=rent&limit=4");
+        const res = await fetch(`${import.meta.env.VITE_BACKEND_API_URL}/api/listing/get?type=rent&limit=4`);
         const data = await res.json();
         setRentListings(data);
         fetchSaleListings();
@@ -37,7 +38,7 @@ export default function Home() {
     };
     const fetchSaleListings = async () => {
       try {
-        const res = await fetch("https://rentify-y4sv.onrender.com/api/listing/get?type=sale&limit=4");
+        const res = await fetch(`${import.meta.env.VITE_BACKEND_API_URL}/api/listing/get?type=sale&limit=4`);
         const data = await res.json();
         setSaleListings(data);
       } catch (error) {
@@ -55,7 +56,7 @@ export default function Home() {
           Find your next<span className="text-rose-500"> home</span> here!
         </h1>
         <p className="text-xl text-slate-500 lg:text-3xl">
-          Browse our wide selection of properties below{" "}
+          Browse our wide selection of properties{" "}
         </p>
         <div className="text-gray-500 text-xs sm:text-sm">
           Real Estate is the best place to buy or rent a property, <br />
@@ -65,7 +66,9 @@ export default function Home() {
           to={"/search"}
           className="text-xs sm:text-sm text-blue-800 font-bold hover:underline"
         >
-          Let's get started!
+          <span className="px-4 py-2 bg-gray-300 border rounded-lg hover:bg-gray-400" >
+              Let's Search
+          </span>
         </Link>
       </div>
       {/*-------------- swiper---------------- */}

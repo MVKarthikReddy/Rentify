@@ -4,7 +4,12 @@ const { errorHandler } = require('../utils/error.js');
 /* --------Create Listing Properties----------------- */
 const createListing = async (req, res, next) => {
     try {
-        const listing = await Listing.create(req.body);
+        const newBody = {
+            userRef: req.user.id,
+            ...req.body
+          }  
+        console.log(newBody)
+        const listing = await Listing.create(newBody);
         return res.status(201).json(listing);
 
     } catch (error) {
