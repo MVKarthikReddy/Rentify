@@ -11,13 +11,10 @@ require('dotenv').config();
 
 const app = express();
 
-const corsOptions = {
-  origin: 'https://rentify-gules.vercel.app/',
-  credentials: true, // Enable credentials (cookies)
-};
+
 
 app.use(cookieParser());
-app.use(cors(corsOptions));
+app.use(cors());
         
 // app.use(cors())
 app.use(express.json()); //it  allows to parse JSON objects in the request body
