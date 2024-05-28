@@ -20,10 +20,10 @@ export default function Footercom() {
             <img src={logo1} alt="Logo" 
              className='w-16 h-16 dark:caret-lime-50' />
              <span className='flex items-center text-2xl'>
-                <span className='px-2 py-1 text-orange-500 font-extrabold font-serif  '>
-                Rent
+                <span className='px-1 py-1 text-orange-500 font-extrabold font-serif  '>
+                Rent<span className="text-white font-extrabold font-serif">ify</span>
                 </span>
-                ify
+                
             </span>
             </div>
             </Link>
