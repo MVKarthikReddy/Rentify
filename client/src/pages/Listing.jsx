@@ -31,7 +31,10 @@ export default function Listing() {
         setLoading(true);
         console.log(params.listingId)
         const res = await fetch(`${import.meta.env.VITE_BACKEND_API_URL}/api/listing/get/${params.listingId}`,{
-          
+          credentials: 'include', // Include credentials (cookies, authorization headers, etc.)
+          headers: {
+            'Content-Type': 'application/json'
+          }
         });
         const data = await res.json();
         if (data.success === false) {
