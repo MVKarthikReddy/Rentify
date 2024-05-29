@@ -33,7 +33,7 @@ export default function SignIn() {
       //so add proxy in vite config 
       const res = await fetch(`${import.meta.env.VITE_BACKEND_API_URL}/api/auth/signin/`,{
         method:'POST',  
-        credentials: "include",
+        // credentials: "include",
         headers:{
           "Content-Type":"application/json"
         },
