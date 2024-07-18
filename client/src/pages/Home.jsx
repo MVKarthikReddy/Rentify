@@ -10,7 +10,10 @@ import "swiper/css/bundle";
 import { Link } from "react-router-dom";
 import ListingItem from "../components/ListingItem";
 import { Button, Modal } from "flowbite-react";
+import { useSelector } from "react-redux";
+
 export default function Home() {
+  const { currentUser, error, loading } = useSelector((state) => state.user);
   const [offerListings, setOfferListings] = useState([]);
   const [saleListings, setSaleListings] = useState([]);
   const [rentListings, setRentListings] = useState([]);
@@ -56,20 +59,33 @@ export default function Home() {
           Find your next<span className="text-rose-500"> home</span> here!
         </h1>
         <p className="text-xl text-slate-500 lg:text-3xl">
-          Browse our wide selection of properties{" "}
+        Explore our extensive range of properties.{" "}
         </p>
         <div className="text-gray-500 text-xs sm:text-sm">
-          Real Estate is the best place to buy or rent a property, <br />
-          and we have you covered with all your needs. You can find here!.
+          Real Estate is your go-to destination for buying or renting properties,
+          and we cater to all your needs. Find your perfect place here!
         </div>
         <Link
           to={"/search"}
           className="text-xs sm:text-sm text-blue-800 font-bold hover:underline"
         >
           <span className="px-4 py-2 bg-gray-300 border rounded-lg hover:bg-gray-400" >
-              Let's Search
+              Let's Search Properties
           </span>
         </Link>
+        <div>
+          {currentUser && (
+            
+            <span
+              className="px-4 py-2 font-bold text-blue-800 bg-gray-200 border rounded-lg hover:bg-gray-400"
+            >
+              <Link to={"/create-listing"}>
+                Upload a Property for <label className="text-blue-500 underline">Sale</label> or for <label className="text-blue-500 underline">Rent</label>
+              </Link>
+            </span>
+          
+        )}
+        </div>
       </div>
       {/*-------------- swiper---------------- */}
       <>

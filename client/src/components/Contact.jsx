@@ -1,8 +1,10 @@
 import { Button, Textarea } from 'flowbite-react';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from "prop-types";
 
-export default function Contact({ listing }) {
+
+export default function Contact({listing}) {
   const [landlord, setLandlord] = useState(null);
   const [message, setMessage] = useState('');
   const onChange = (e) => {
@@ -11,7 +13,13 @@ export default function Contact({ listing }) {
   useEffect(() =>{
     const fetchLandlord = async () => {
       try {
-        const res = await fetch(`${import.meta.env.VITE_BACKEND_API_URL}/api/user/${listing.userRef}`);
+        console.log(listing.userRef)
+        const res = await fetch(`${import.meta.env.VITE_BACKEND_API_URL}/api/user/${listing.userRef}`, {
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${localStorage.getItem('jwt_token')}`,
+          }
+        });
         const data = await res.json();
         setLandlord(data);
         console.log(data)
@@ -45,4 +53,8 @@ export default function Contact({ listing }) {
     )}
     </>
   )
+}
+
+Contact.propTypes = {
+  listing : PropTypes.object
 }

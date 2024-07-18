@@ -42,7 +42,7 @@ export default function Footercom() {
             />
             <div className="flex gap-6 sm:mt-0 mt-4 justify-center">
                 
-                <Footer.Icon href="https://karthik-reddy.vercel.app/project" icon={IoGlobeOutline} />
+                <Footer.Icon href="https://karthikreddy.vercel.app/project" icon={IoGlobeOutline} />
                 <Footer.Icon href="https://github.com/MVKarthikReddy/" icon={BsGithub} />
                 
             </div>

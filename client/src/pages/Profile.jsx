@@ -168,7 +168,12 @@ export default function Profile() {
   const handleShowListings = async () => {
     try {
       setShowListingsError(false);
-      const res = await fetch(`${import.meta.env.VITE_BACKEND_API_URL}/api/user/listings/${currentUser._id}`);
+      const res = await fetch(`${import.meta.env.VITE_BACKEND_API_URL}/api/user/listings/${currentUser._id}`,{
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${localStorage.getItem('jwt_token')}`,
+        }
+      });
       const data = await res.json();
       if (data.success === false) {
         setShowListingsError(true);
@@ -185,6 +190,10 @@ export default function Profile() {
     try {
       const res = await fetch(`${import.meta.env.VITE_BACKEND_API_URL}/api/listing/delete/${listingId}`, {
         method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${localStorage.getItem('jwt_token')}`,
+        }
       });
       const data = await res.json();
       if (data.success === false) {
