@@ -36,7 +36,7 @@ Welcome to **Rentify**! This web application, built using the MERN stack (MongoD
 - **Backend**: Node.js, Express.js
 - **Database**: MongoDB
 - **Authentication**: JWT (JSON Web Tokens)
-- **Styling**: CSS, Bootstrap
+- **Styling**: Tailwind CSS, Bootstrap
 
 ## Getting Started
 
